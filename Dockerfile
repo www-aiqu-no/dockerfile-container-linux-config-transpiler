@@ -13,9 +13,7 @@ RUN apk add --no-cache --virtual .build-deps bash git make dumb-init \
 
 FROM golang:alpine
 
-WORKDIR /ct
-
 COPY --from=0 /export/* /usr/bin/
 
-ENTRYPOINT ["/usr/bin/dumb-init"]
-CMD ["/usr/bin/ct","-help"]
+ENTRYPOINT ["/usr/bin/dumb-init","/usr/bin/ct"]
+CMD ["-help"]
